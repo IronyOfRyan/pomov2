@@ -5,7 +5,7 @@ const bundlePath = path.resolve(__dirname, "/dist/");
 module.exports = {
   entry: "./src/component/index.js",
   module: {
-    rules: [
+    rules:  [
       { test: /\.jsx?$/, exclude: /(node_modules|bower_components)/, loader: 'babel-loader' },
             { test: /\.css$/, loader: 'style-loader!css-loader' },
             { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
@@ -21,7 +21,12 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname,'public'),
-    port: 3000
+    port: 3000,
+    https: false,
+    disableHostCheck: true
   },
-  plugins: [ new webpack.HotModuleReplacementPlugin() ]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+  ]
 };

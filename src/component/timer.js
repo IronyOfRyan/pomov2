@@ -1,42 +1,108 @@
 import React, { Component} from "react";
-import AppButton from './Button.js'
-import {ButtonGroup} from 'react-bootstrap'
-const {timerStop, countDown} = require('../controls/timerInit.js');
-const {play} = require('../controls/timerController.js')
+import moment from 'moment';
+import TimerHeader from '../view/timerHeader.js';
+import TimerDisplay from '../view/timerDisplay.js';
+import TimerButtons from '../view/timerButtons.js';
+import TimerModeButtons from '../view/timerModes.js';
+import TimerIncrements from '../view/timerIncrements.js';
+import * as timerStates from '../controls/timerStates.js';
 
 class Timer extends Component{
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
-      started: false,
-      minutes: 25,
-      seconds: 0,
-      interval:null
+      work: 25,
+      break: 5,
+      currentTime: moment.duration(25, 'minutes'),
+      initTime: moment.duration(25, 'minutes'),
+      breakTime: moment.duration(5, 'minutes'),
+      timerState: timerStates.INIT,
+      interval: null,
     }
-
-  }
-  zeroPad = (num) => {
-      return (num < 10) ? "0" + num : num;
   }
 
-  handleClick = (e) => {
-    e.preventDefault();
+  setInitTime = (newInitTime) => {
 
-    console.log('Button clicked');
+    this.setState({
+      initTime: newInitTime,
+      currentTime: newInitTime,
+
+    })
   }
 
+  swapTimer = () => {
+    clearInterval(this.state.interval)
 
+    this.setState({
+      timerState: timerStates.INIT,
+      currentTime: moment.duration(5, 'minutes'),
+      initTime: moment.duration(5, 'minutes'),
+      interval:null,
+    })
+  }
+
+  startTimer = () => {
+    if (this.state.interval) clearInterval(this.state.interval)
+    this.setState({
+      timerState: timerStates.RUNNING,
+      interval: setInterval(this.reduceTimer, 1000)
+    })
+  }
+
+  reduceTimer = () => {
+    if (this.state.currentTime.get('hours') === 0
+      && this.state.currentTime.get('minutes') === 0
+      && this.state.currentTime.get('seconds') === 0){
+      this.completeTimer();
+      return;
+      }
+
+
+    const newTime = moment.duration(this.state.currentTime);
+    newTime.subtract(1, 'second');
+    this.setState({
+      currentTime: newTime,
+    })
+  }
+
+  pauseTimer = () => {
+    if (this.state.interval) clearInterval(this.state.interval)
+    this.setState({
+      timerState: timerStates.PAUSE,
+    })
+  }
+
+  completeTimer = () => {
+    this.setState({
+      timerState: timerStates.DONE,
+      interval:null,
+    })
+  }
+
+  resetTimer = () => {
+    clearInterval(this.state.interval)
+    this.setState({
+      currentTime: moment.duration(25, 'minutes'),
+      initTime: moment.duration(25, 'minutes'),
+      timerState: timerStates.INIT,
+      interval: null,
+    })
+  }
 
   render(){
 
     return(
-      <div className="timer">
-        <div className = "timerDisplay">{this.zeroPad(this.state.minutes)}:{this.zeroPad(this.state.seconds)}</div>
-        <ButtonGroup>
-          <AppButton label="Play" handleClick={this.handleClick}/>
-          <AppButton label="Pause" />
-          <AppButton label="Stop" />
-        </ButtonGroup>
+      <div className="container-fluid">
+        <TimerHeader />
+        <TimerModeButtons resetTimer={this.resetTimer} swapTimer={this.swapTimer} displayTime={this.state.work}/>
+        <TimerIncrements initTime={this.state.initTime} setInitTime={this.setInitTime} timerState={this.state.timerState}/>
+        <TimerDisplay currentTime={this.state.currentTime} timerState={this.state.timerState}/>
+        <TimerButtons
+        startTimer={this.startTimer}
+        timerState={this.state.timerState}
+        pauseTimer={this.pauseTimer}
+        resetTimer={this.resetTimer}
+        />
       </div>
     );
 
