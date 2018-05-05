@@ -21,3 +21,19 @@
   margin-right: auto;
   margin-left: auto;
 }
+
+.unaryButton {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2px;
+}
+
+.timerDisplay {
+  background-color: grey;
+  padding: 30px;
+  text-align: center;
+  margin: 60px;
+  height: 100px;
+  width: 400px;
+}

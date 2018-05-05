@@ -8,8 +8,8 @@ const zeroPad = (num) => {
 }
 
 const timerDisplay = (props) => (
-  <Row>
-    <h2 className="center-block"> {`${zeroPad(props.currentTime.get('hours'))}:${zeroPad(props.currentTime.get('minutes'))}:${zeroPad(props.currentTime.get('seconds'))}`} </h2>
+  <Row className="timerDisplay center-block">
+    <h2> {`${zeroPad(props.currentTime.get('hours'))}:${zeroPad(props.currentTime.get('minutes'))}:${zeroPad(props.currentTime.get('seconds'))}`} </h2>
   </Row>
 );
 

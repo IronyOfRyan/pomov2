@@ -4,7 +4,6 @@ import TimerHeader from '../view/timerHeader.js';
 import TimerDisplay from '../view/timerDisplay.js';
 import TimerButtons from '../view/timerButtons.js';
 import TimerModeButtons from '../view/timerModes.js';
-import TimerIncrements from '../view/timerIncrements.js';
 import * as timerStates from '../controls/timerStates.js';
 
 class Timer extends Component{
@@ -94,8 +93,16 @@ class Timer extends Component{
     return(
       <div className="container-fluid">
         <TimerHeader />
-        <TimerModeButtons resetTimer={this.resetTimer} swapTimer={this.swapTimer} displayTime={this.state.work}/>
-        <TimerIncrements initTime={this.state.initTime} setInitTime={this.setInitTime} timerState={this.state.timerState}/>
+        <TimerModeButtons
+          resetTimer={this.resetTimer}
+          swapTimer={this.swapTimer}
+          workTime={this.state.work}
+          breakTime={this.state.break}
+          initTime={this.state.initTime}
+          setInitTime={this.setInitTime}
+          timerState={this.state.timerState}
+        />
+
         <TimerDisplay currentTime={this.state.currentTime} timerState={this.state.timerState}/>
         <TimerButtons
         startTimer={this.startTimer}
