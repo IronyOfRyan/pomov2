@@ -9,7 +9,7 @@ const zeroPad = (num) => {
 
 const timerDisplay = (props) => (
   <Row className="timerDisplay center-block">
-  {/* Hide the hour timer if time is below 60 minutes. */}
+  {/* Hide the hour element if time is below 60 minutes. */}
   {
     (props.currentTime.get('hours') < 1)
       ? <h2> {`${zeroPad(props.currentTime.get('minutes'))}:${zeroPad(props.currentTime.get('seconds'))}`} </h2>

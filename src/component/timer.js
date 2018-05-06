@@ -3,12 +3,12 @@ import moment from 'moment';
 import TimerHeader from '../view/timerHeader.js';
 import TimerDisplay from '../view/timerDisplay.js';
 import TimerButtons from '../view/timerButtons.js';
-import TimerModeButtons from '../view/timerModes.js';
 import * as timerStates from '../controls/timerStates.js';
 import start from '../sounds/start.mp3';
 import pause from '../sounds/pause.mp3';
 import reset from '../sounds/stop.mp3';
 import end from '../sounds/alarm-buzzer.mp3';
+import Test from './AppOverlay.js';
 
 
 class Timer extends Component{
@@ -117,16 +117,11 @@ class Timer extends Component{
     return(
       <div className="container-fluid">
         <TimerHeader />
-        <TimerModeButtons
-          resetTimer={this.resetTimer}
-          swapTimer={this.swapTimer}
-          workTime={this.state.work}
-          breakTime={this.state.break}
+        <Test
           initTime={this.state.initTime}
           setInitTime={this.setInitTime}
           timerState={this.state.timerState}
         />
-
         <TimerDisplay currentTime={this.state.currentTime} timerState={this.state.timerState}/>
         <TimerButtons
         startTimer={this.startTimer}
