@@ -9,9 +9,12 @@ class TimerModeButtons extends Component {
 
   handleChange = ev => {
     const newInitTime = this.props.initTime;
+    // Converts hour and minutes to a single number
+    let hourConvert = (newInitTime.get('hours') * 60) + newInitTime.get('minutes');
+    
     if(this.props.timerState === timerStates.RUNNING) return
-    if(ev.target.id === 'minus' && newInitTime > 0) newInitTime.subtract(parseInt(5, 10), 'minutes');
-    if(ev.target.id === 'plus') newInitTime.add(parseInt(5, 10), 'minutes')
+    if(ev.target.id === 'minus' && hourConvert > 5 ) newInitTime.subtract(parseInt(5, 10), 'minutes');
+    if(ev.target.id === 'plus' && newInitTime.get('hours') < 4) newInitTime.add(parseInt(5, 10), 'minutes')
 
     this.props.setInitTime(newInitTime);
   }
