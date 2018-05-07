@@ -4,18 +4,14 @@ import TimerHeader from '../view/timerHeader.js';
 import TimerDisplay from '../view/timerDisplay.js';
 import TimerButtons from '../view/timerButtons.js';
 import * as timerStates from '../controls/timerStates.js';
-import start from '../sounds/start.mp3';
-import pause from '../sounds/pause.mp3';
-import reset from '../sounds/stop.mp3';
-import end from '../sounds/alarm-buzzer.mp3';
-import Test from './AppOverlay.js';
+import {start, pause, reset, end} from '../sounds/sounds.js';
+import AppOverlay from './AppOverlay.js';
 
 
 class Timer extends Component{
   constructor(props){
     super(props);
     this.state = {
-      audioList: {},
       work: 25,
       break: 5,
       currentTime: moment.duration(25, 'minutes'),
@@ -24,11 +20,6 @@ class Timer extends Component{
       timerState: timerStates.INIT,
       interval: null,
     }
-
-    this.start = new Audio(start);
-    this.pause = new Audio(pause);
-    this.reset = new Audio(reset);
-    this.end = new Audio(end);
   }
 
 
@@ -60,13 +51,14 @@ class Timer extends Component{
       timerState: timerStates.RUNNING,
       interval: setInterval(this.reduceTimer, 1000)
     })
-    this.start.play();
+    start.play();
   }
 
   noZeroTimer = () => {
       if (this.state.currentTime.get('hours') === 0
         && this.state.currentTime.get('minutes') === 0
         && this.state.currentTime.get('seconds') === 0){
+        end.play()
         return;
         }
     }
@@ -75,6 +67,7 @@ class Timer extends Component{
     if (this.state.currentTime.get('hours') === 0
       && this.state.currentTime.get('minutes') === 0
       && this.state.currentTime.get('seconds') === 0){
+      clearInterval(this.state.interval)
       this.completeTimer();
       return;
       }
@@ -88,7 +81,7 @@ class Timer extends Component{
 
   pauseTimer = () => {
     if (this.state.interval) clearInterval(this.state.interval)
-    this.pause.play();
+    pause.play();
     this.setState({
       timerState: timerStates.PAUSE,
     })
@@ -103,13 +96,13 @@ class Timer extends Component{
 
   resetTimer = () => {
     clearInterval(this.state.interval)
-    this.reset.play();
+    reset.play();
     this.setState({
       currentTime: moment.duration(25, 'minutes'),
       initTime: moment.duration(25, 'minutes'),
       timerState: timerStates.INIT,
       interval: null,
-    })
+    });
   }
 
   render(){
@@ -117,17 +110,17 @@ class Timer extends Component{
     return(
       <div className="container-fluid">
         <TimerHeader />
-        <Test
-          initTime={this.state.initTime}
-          setInitTime={this.setInitTime}
-          timerState={this.state.timerState}
-        />
         <TimerDisplay currentTime={this.state.currentTime} timerState={this.state.timerState}/>
         <TimerButtons
         startTimer={this.startTimer}
         timerState={this.state.timerState}
         pauseTimer={this.pauseTimer}
         resetTimer={this.resetTimer}
+        />
+        <AppOverlay
+        initTime={this.state.initTime}
+        setInitTime={this.setInitTime}
+        timerState={this.state.timerState}
         />
       </div>
     );

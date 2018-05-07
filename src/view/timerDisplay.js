@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row} from 'react-bootstrap';
+import Row from 'react-bootstrap/lib/Row';
 import * as timerStates from '../controls/timerStates.js';
 
 // Function that adds the extra 0 in when numbers are single digits
