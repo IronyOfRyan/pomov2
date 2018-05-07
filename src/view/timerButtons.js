@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, ButtonToolbar} from 'react-bootstrap/lib/';
-import * as timerStates from '../controls/timerStates.js';
+import * as timerStates from '../component/timerStates.js';
 
 
 const timerButtons = (props) => {

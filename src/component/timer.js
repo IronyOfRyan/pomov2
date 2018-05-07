@@ -3,7 +3,7 @@ import moment from 'moment';
 import TimerHeader from '../view/timerHeader.js';
 import TimerDisplay from '../view/timerDisplay.js';
 import TimerButtons from '../view/timerButtons.js';
-import * as timerStates from '../controls/timerStates.js';
+import * as timerStates from '../component/timerStates.js';
 import {start, pause, reset, end} from '../sounds/sounds.js';
 import AppOverlay from './AppOverlay.js';
 
