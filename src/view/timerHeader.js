@@ -1,11 +1,10 @@
-import React from 'react';
-import Row from 'react-bootstrap/lib/Row';
-
+import React from "react";
+import { Header } from "../styles/appoverlay.js";
 
 const timerHeader = () => (
-  <Row>
-    <h1 className="center-block">Pomodoro&ensp;Timer</h1>
-  </Row>
+  <Header>
+    <h1>Pomodoro&ensp;Timer</h1>
+  </Header>
 );
 
-export default timerHeader
+export default timerHeader;

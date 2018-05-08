@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TimerInputs from "../view/timerInputs.js";
-import { ListGroup } from "react-bootstrap/lib/";
-import WorkButton from "../view/timerWorkButton.js";
+import WorkTimeDisplay from "../view/timerWorkButton.js";
+import { Overlay, Header, Span } from "../styles/appoverlay.js";
 
 class AppOverlay extends React.Component {
   constructor(props) {
@@ -61,27 +61,22 @@ class AppOverlay extends React.Component {
   render() {
     return (
       <div>
-        <span
-          style={{ fontSize: 30, cursor: "pointer" }}
-          onClick={this.openNav}
-        >
-          &#9776; Open Settings
-        </span>
-        <div ref="snav" className="overlay" style={this.state.style}>
+        <Span onClick={this.openNav}>&#9776; Open Settings</Span>
+        <Overlay style={this.state.style}>
           <div style={this.state.style}>
-            <div className="text-center settingsHeader">
+            <Header>
               <h2>Timer Settings</h2>
               <p>How long do you want to work?</p>
-            </div>
-            <ListGroup>
-              <WorkButton initTime={this.props.initTime} />
+            </Header>
+            <div id="content-holder">
+              <WorkTimeDisplay initTime={this.props.initTime} />
               <TimerInputs
                 enterKey={this.handleKeyPress}
                 handleChange={this.handleChange}
                 initTime={this.props.initTime}
               />
               {/*this.props.children*/}
-            </ListGroup>
+            </div>
             {this.props.children}
             <a
               href="javascript:void(0)"
@@ -91,7 +86,7 @@ class AppOverlay extends React.Component {
               Close Settings
             </a>
           </div>
-        </div>
+        </Overlay>
       </div>
     );
   }

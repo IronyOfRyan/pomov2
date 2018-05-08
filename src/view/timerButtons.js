@@ -1,41 +1,32 @@
-import React from 'react';
-import {Button, ButtonToolbar} from 'react-bootstrap/lib/';
-import * as timerStates from '../component/timerStates.js';
+import React from "react";
+import * as timerStates from "../component/timerStates.js";
+import { TimerButton, Center } from "../styles/timerStyleButtons.js";
 
-
-const timerButtons = (props) => {
-
-  const playPauseButton = (props) => {
-
+const timerButtons = props => {
+  const playPauseButton = props => {
     if (props.timerState === timerStates.DONE)
       return (
-          <Button className="center-block" bsStyle="success" bsSize="large" onClick={props.startTimer} disabled>Start</Button>
-
-      )
+        <TimerButton onClick={props.startTimer} disabled>
+          Start
+        </TimerButton>
+      );
 
     if (props.timerState !== timerStates.RUNNING)
-      return (
-          <Button className="center-block" bsStyle="success" bsSize="large" onClick={props.startTimer} >Start</Button>
-
-      )
+      return <TimerButton onClick={props.startTimer}>Start</TimerButton>;
 
     if (props.timerState === timerStates.RUNNING)
       return (
-          <Button className="center-block" bsStyle="danger" bsSize="large" onClick={props.pauseTimer}>Pause</Button>
-      )
+        <TimerButton onClick={props.pauseTimer} pause>
+          Pause
+        </TimerButton>
+      );
+  };
 
-  }
-
-
-    return (
-      <div>
-        <ButtonToolbar>
-          {playPauseButton(props)}
-          <Button className="center-block" bsStyle="success" bsSize="large" onClick={props.resetTimer}>Reset</Button>
-        </ButtonToolbar>
-      </div>
-    );
-
-
-}
-export default timerButtons
+  return (
+    <Center>
+      {playPauseButton(props)}
+      <TimerButton onClick={props.resetTimer}>Reset</TimerButton>
+    </Center>
+  );
+};
+export default timerButtons;

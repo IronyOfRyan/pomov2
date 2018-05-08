@@ -1,24 +1,16 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import "./App.css";
-import Timer from './timer.js';
-import Panel from 'react-bootstrap/lib/Panel';
+import Timer from "./timer.js";
+import AppContent from "../styles/appcontent.js";
 
-
-
-class App extends Component{
-
-  render(){
-    return(
-      <Panel>
-        <Panel.Body className="app-content center-block">
-          <Timer />
-        </Panel.Body>
-      </Panel>
-
+class App extends Component {
+  render() {
+    return (
+      <AppContent>
+        <Timer />
+      </AppContent>
     );
   }
 }
-
-
 
 export default App;
