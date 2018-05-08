@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TimerInputs from "../view/timerInputs.js";
 import WorkTimeDisplay from "../view/timerWorkButton.js";
-import { Overlay, Header, Span, ContentHolder } from "../styles/appoverlay.js";
+import { Overlay, Wrapper, Span, ContentHolder } from "../styles/appoverlay.js";
 import PropTypes from "prop-types";
 
 class AppOverlay extends React.Component {
@@ -61,14 +61,12 @@ class AppOverlay extends React.Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <Span onClick={this.openNav}>&#9776; Open Settings</Span>
         <Overlay style={this.state.style}>
           <ContentHolder style={this.state.style}>
-            <Header>
-              <h2>Timer Settings</h2>
-              <p>How long do you want to work?</p>
-            </Header>
+            <h2>Timer Settings</h2>
+            <p>How long do you want to work?</p>
 
             <WorkTimeDisplay initTime={this.props.initTime} />
             <TimerInputs
@@ -86,7 +84,7 @@ class AppOverlay extends React.Component {
             </a>
           </ContentHolder>
         </Overlay>
-      </div>
+      </Wrapper>
     );
   }
 }

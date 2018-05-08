@@ -21,6 +21,10 @@ const Label = styled.label`
 `;
 
 const NumberInput = styled.input`
+  font-size: 20px;
+  color: #fff;
+  height: 50px;
+  border-color: #d31027;
   text-align: center;
   margin: auto;
   width: 50%;

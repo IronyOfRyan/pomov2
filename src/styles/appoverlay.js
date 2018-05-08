@@ -39,10 +39,6 @@ const Overlay = styled.div`
     font-size: 150px;
     color: #d31027;
 
-    @media (max-width: 500px) {
-      margin: 20px 20px 0;
-      width: auto;
-      font-size: 75px;
     }
   }
 
@@ -60,14 +56,22 @@ const ContentHolder = styled.div`
   width: 50%;
 `;
 
-const Header = styled.div`
+const Wrapper = styled.div`
+  width: 50%;
   text-align: center;
+  margin-right: auto;
+  margin-left: auto;
 `;
 
 const Span = styled.span`
-  margin-top: 100px;
+  width:50%
+  display: block;
+  text-align: center;
+  margin-top: 150px;
+  margin-right: auto;
+  margin-left: auto;
   font-size: 13px;
   cursor: pointer;
 `;
 
-export { Overlay, Header, Span, ContentHolder };
+export { Overlay, Wrapper, Span, ContentHolder };

@@ -3,9 +3,9 @@ import moment from "moment";
 import TimerDisplay from "../view/timerDisplay.js";
 import TimerButtons from "../view/timerButtons.js";
 import * as timerStates from "../component/timerStates.js";
-import { Center } from "../styles/timerStyleButtons.js";
 import { start, pause, reset, end } from "../sounds/sounds.js";
 import AppOverlay from "./AppOverlay.js";
+import AppContent from "../styles/appcontent.js";
 import PropTypes from "prop-types";
 
 class Timer extends Component {
