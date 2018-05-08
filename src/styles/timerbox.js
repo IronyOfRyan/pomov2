@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
-export default styled.div`
-  padding: 30px;
+const TimerBox = styled.div`
   text-align: center;
   margin: 60px;
-  height: 100px;
   width: 400px;
 `;
+
+const TimerCountDown = styled.div`
+  font-size: 150px;
+`;
+
+export { TimerBox, TimerCountDown };

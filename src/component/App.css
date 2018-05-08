@@ -4,6 +4,9 @@ html body{
   background: linear-gradient(to right, #EA384D, #D31027);
 }
 
-h1 {
-  color:white;
+input[type='number'] {
+  color:#D31027;
+}
+input[type='number']:focus {
+  color:#000;
 }

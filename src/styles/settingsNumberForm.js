@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const NumberForms = styled.form`
+const NumberForms = styled.div`
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -14,6 +14,7 @@ const SingleForm = styled.div`
 `;
 
 const NumberInput = styled.form`
+  background-color: #d31027;
   text-align: center;
   margin: auto;
   width: 50%;

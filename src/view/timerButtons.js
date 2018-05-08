@@ -1,6 +1,7 @@
 import React from "react";
 import * as timerStates from "../component/timerStates.js";
 import { TimerButton, Center } from "../styles/timerStyleButtons.js";
+import PropTypes from "prop-types";
 
 const timerButtons = props => {
   const playPauseButton = props => {
@@ -29,4 +30,12 @@ const timerButtons = props => {
     </Center>
   );
 };
+
+timerButtons.propTypes = {
+  timerState: PropTypes.number,
+  startTimer: PropTypes.func,
+  pauseTimer: PropTypes.func,
+  resetTimer: PropTypes.func
+};
+
 export default timerButtons;

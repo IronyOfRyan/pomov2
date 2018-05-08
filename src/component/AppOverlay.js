@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import TimerInputs from "../view/timerInputs.js";
 import WorkTimeDisplay from "../view/timerWorkButton.js";
-import { Overlay, Header, Span } from "../styles/appoverlay.js";
+import { Overlay, Header, Span, ContentHolder } from "../styles/appoverlay.js";
+import PropTypes from "prop-types";
 
 class AppOverlay extends React.Component {
   constructor(props) {
@@ -63,7 +64,7 @@ class AppOverlay extends React.Component {
       <div>
         <Span onClick={this.openNav}>&#9776; Open Settings</Span>
         <Overlay style={this.state.style}>
-          <div style={this.state.style}>
+          <ContentHolder style={this.state.style}>
             <Header>
               <h2>Timer Settings</h2>
               <p>How long do you want to work?</p>
@@ -75,9 +76,7 @@ class AppOverlay extends React.Component {
                 handleChange={this.handleChange}
                 initTime={this.props.initTime}
               />
-              {/*this.props.children*/}
             </div>
-            {this.props.children}
             <a
               href="javascript:void(0)"
               className="closebtn"
@@ -85,11 +84,16 @@ class AppOverlay extends React.Component {
             >
               Close Settings
             </a>
-          </div>
+          </ContentHolder>
         </Overlay>
       </div>
     );
   }
 }
+
+AppOverlay.propTypes = {
+  initTime: PropTypes.object,
+  setInitTime: PropTypes.func
+};
 
 export default AppOverlay;

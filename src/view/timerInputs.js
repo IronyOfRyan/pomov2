@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   NumberForms,
   SingleForm,
@@ -83,6 +84,12 @@ const TimerInputs = props => {
       </SingleForm>
     </NumberForms>
   );
+};
+
+TimerInputs.propTypes = {
+  enterKey: PropTypes.func,
+  initTime: PropTypes.object,
+  handleChange: PropTypes.func
 };
 
 export default TimerInputs;

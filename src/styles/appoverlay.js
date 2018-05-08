@@ -7,8 +7,8 @@ const Overlay = styled.div`
   z-index: 2;
   top: 0;
   left: 0;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 1);
   overflow-x: hidden;
   transition: 0.5s;
 
@@ -16,15 +16,15 @@ const Overlay = styled.div`
     padding: 8px;
     text-decoration: none;
     font-size: 36px;
-    color: #818181;
+    color: #d31027;
     display: block;
     transition: 0.3s;
 
     &:hover {
-      color: red;
+      color: #000;
     }
     &:focus {
-      color: red;
+      color: #000;
     }
   }
 
@@ -35,17 +35,26 @@ const Overlay = styled.div`
     font-size: 30px;
   }
 
+  h1 {
+    font-size: 150px;
+    color: #d31027;
+  }
+
   h2 {
-    color: white;
+    color: #d31027;
   }
   p {
-    color: white;
+    color: #d31027;
   }
+`;
+
+const ContentHolder = styled.div`
+  text-align: center;
+  margin-bottom: 90px;
 `;
 
 const Header = styled.div`
   text-align: center;
-  margin-bottom: 90px;
 `;
 
 const Span = styled.span`
@@ -54,4 +63,4 @@ const Span = styled.span`
   cursor: pointer;
 `;
 
-export { Overlay, Header, Span };
+export { Overlay, Header, Span, ContentHolder };

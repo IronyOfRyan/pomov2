@@ -1,5 +1,5 @@
 import React from "react";
-import SettingsTimeDisplay from "../styles/settingsTimeDisplay.js";
+import PropTypes from "prop-types";
 
 const zeroPad = num => {
   return num < 10 ? `0${num}` : `${num}`;
@@ -7,7 +7,7 @@ const zeroPad = num => {
 
 const WorkButton = props => {
   return (
-    <SettingsTimeDisplay>
+    <div>
       {props.initTime.get("hours") < 1 ? (
         <h1>
           {" "}
@@ -23,7 +23,12 @@ const WorkButton = props => {
           )}:${zeroPad(props.initTime.get("seconds"))}`}{" "}
         </h1>
       )}
-    </SettingsTimeDisplay>
+    </div>
   );
 };
+
+WorkButton.propTypes = {
+  initTime: PropTypes.object
+};
+
 export default WorkButton;
