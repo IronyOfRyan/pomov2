@@ -3,6 +3,7 @@ import moment from "moment";
 import TimerDisplay from "../view/timerDisplay.js";
 import TimerButtons from "../view/timerButtons.js";
 import * as timerStates from "../component/timerStates.js";
+import { Center } from "../styles/timerStyleButtons.js";
 import { start, pause, reset, end } from "../sounds/sounds.js";
 import AppOverlay from "./AppOverlay.js";
 import PropTypes from "prop-types";
@@ -104,7 +105,7 @@ class Timer extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div>
         <TimerDisplay
           currentTime={this.state.currentTime}
           timerState={this.state.timerState}

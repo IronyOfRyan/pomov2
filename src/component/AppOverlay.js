@@ -69,14 +69,14 @@ class AppOverlay extends React.Component {
               <h2>Timer Settings</h2>
               <p>How long do you want to work?</p>
             </Header>
-            <div id="content-holder">
-              <WorkTimeDisplay initTime={this.props.initTime} />
-              <TimerInputs
-                enterKey={this.handleKeyPress}
-                handleChange={this.handleChange}
-                initTime={this.props.initTime}
-              />
-            </div>
+
+            <WorkTimeDisplay initTime={this.props.initTime} />
+            <TimerInputs
+              enterKey={this.handleKeyPress}
+              handleChange={this.handleChange}
+              initTime={this.props.initTime}
+            />
+
             <a
               href="javascript:void(0)"
               className="closebtn"

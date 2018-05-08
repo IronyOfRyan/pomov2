@@ -38,6 +38,12 @@ const Overlay = styled.div`
   h1 {
     font-size: 150px;
     color: #d31027;
+
+    @media (max-width: 500px) {
+      margin: 20px 20px 0;
+      width: auto;
+      font-size: 75px;
+    }
   }
 
   h2 {
@@ -51,6 +57,7 @@ const Overlay = styled.div`
 const ContentHolder = styled.div`
   text-align: center;
   margin-bottom: 90px;
+  width: 50%;
 `;
 
 const Header = styled.div`

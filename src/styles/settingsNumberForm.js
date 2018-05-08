@@ -6,15 +6,7 @@ const NumberForms = styled.div`
   margin-left: auto;
 `;
 
-const SingleForm = styled.div`
-  text-align: center;
-  margin: auto;
-  width: 50%;
-  margin-bottom: 50px;
-`;
-
-const NumberInput = styled.form`
-  background-color: #d31027;
+const Form = styled.form`
   text-align: center;
   margin: auto;
   width: 50%;
@@ -22,9 +14,16 @@ const NumberInput = styled.form`
 `;
 
 const Label = styled.label`
+  color: #d31027;
+  display: block;
+  font-size: 15px;
+  text-align: center;
+`;
+
+const NumberInput = styled.input`
   text-align: center;
   margin: auto;
   width: 50%;
 `;
 
-export { NumberForms, SingleForm, NumberInput, Label };
+export { NumberForms, Form, Label, NumberInput };
