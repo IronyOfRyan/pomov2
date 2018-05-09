@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const TimerButton = styled.button`
+  text-transform: uppercase;
   height: 50px;
   font-size: 20px;
   text-align: center;
