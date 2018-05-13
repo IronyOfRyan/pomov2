@@ -8,7 +8,7 @@ module.exports = {
     rules: [
       {
         test: /\.js?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         loader: "babel-loader"
       },
       { test: /\.css$/, loader: "style-loader!css-loader" },
@@ -17,13 +17,14 @@ module.exports = {
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
   output: {
+    path: path.resolve(__dirname, "dist"),
     publicPath: bundlePath,
     filename: "bundle.js"
   },
   devServer: {
     contentBase: path.join(__dirname, "public"),
     port: 3000,
-    https: false,
+    https: true,
     disableHostCheck: true
   },
   plugins: [
