@@ -23,9 +23,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname, "public"),
-    port: 3000,
-    https: true,
-    disableHostCheck: true
+    port: 3000
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
