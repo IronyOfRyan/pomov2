@@ -6,14 +6,15 @@ export default styled.div`
   margin-left: auto;
   color:white
   background: transparent;
+  border: 4px #fff solid;
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;          /* Likely future */
-  width: 100%;
-  height:100%;
+  width: 50%;
+  height: 25%;
   margin-top: 100px;
-  z-index: 1;
+  z-index: 2;
 
   @media(max-width: 650px){
       margin: 20px 20px 0;

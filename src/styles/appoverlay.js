@@ -1,12 +1,8 @@
 import styled from "styled-components";
 
 const Overlay = styled.div`
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
+  <width:10></width:10>0% !important;
+  height:10% !important;
   background-color: rgb(255, 255, 255);
   background-color: rgba(255, 255, 255, 1);
   overflow-x: hidden;
@@ -53,14 +49,12 @@ const Overlay = styled.div`
 const ContentHolder = styled.div`
   text-align: center;
   margin-bottom: 90px;
-  width: 50%;
 `;
 
 const Wrapper = styled.div`
-  width: 50%;
   text-align: center;
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: ;
+  margin-left: ;
 `;
 
 const Span = styled.span`
