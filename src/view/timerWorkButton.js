@@ -5,22 +5,22 @@ const zeroPad = num => {
   return num < 10 ? `0${num}` : `${num}`;
 };
 
-const WorkButton = props => {
+const WorkButton = ({ initTime }) => {
   return (
     <div>
-      {props.initTime.get("hours") < 1 ? (
+      {initTime.get("hours") < 1 ? (
         <h1>
           {" "}
-          {`${props.initTime.get("minutes")}:${zeroPad(
-            props.initTime.get("seconds")
+          {`${initTime.get("minutes")}:${zeroPad(
+            initTime.get("seconds")
           )}`}{" "}
         </h1>
       ) : (
         <h1>
           {" "}
-          {`${props.initTime.get("hours")}:${zeroPad(
-            props.initTime.get("minutes")
-          )}:${zeroPad(props.initTime.get("seconds"))}`}{" "}
+          {`${initTime.get("hours")}:${zeroPad(
+            initTime.get("minutes")
+          )}:${zeroPad(initTime.get("seconds"))}`}{" "}
         </h1>
       )}
     </div>

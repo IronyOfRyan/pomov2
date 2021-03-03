@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 const Overlay = styled.div`
-  <width:10></width:10>0% !important;
+  width: 200 !important;
   height:10% !important;
-  background-color: rgb(255, 255, 255);
   background-color: rgba(255, 255, 255, 1);
   overflow-x: hidden;
   transition: 0.5s;
@@ -27,7 +26,7 @@ const Overlay = styled.div`
   .closebtn {
     position: relative;
     text-align: center;
-    margin-top: 250px;
+    margin-top: 50px;
     font-size: 30px;
   }
 
@@ -48,13 +47,10 @@ const Overlay = styled.div`
 
 const ContentHolder = styled.div`
   text-align: center;
-  margin-bottom: 90px;
 `;
 
 const Wrapper = styled.div`
   text-align: center;
-  margin-right: ;
-  margin-left: ;
 `;
 
 const Span = styled.span`

@@ -9,7 +9,7 @@ const TimerButton = styled.button`
   display: inline-block;
   margin-left: 10px;
   margin-right: 10px;
-  color: ${props => (props.pause ? "#d31027" : "#FFF")};
+  color: ${props => (props.pause ? "#d31027" : "#d31027")};
   background-color: ${props => (props.pause ? "#FFF" : "transparent")};
   border-color: ${props => (props.pause ? "#d31027" : "#FFF")};
   border-radius: 10px;

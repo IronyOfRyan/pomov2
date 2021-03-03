@@ -1,12 +1,14 @@
-html body{
-  background: #D31027;
-  background: -webkit-linear-gradient(to right, #EA384D, #D31027);
-  background: linear-gradient(to right, #EA384D, #D31027);
+html body {
+  height: 100%;
+  margin: 0;
+  background: #d31027;
+  background: -webkit-linear-gradient(to right, #ea384d, #d31027);
+  background: linear-gradient(to right, #ea384d, #d31027);
 }
 
-input[type='number'] {
-  color:#D31027;
+input[type="number"] {
+  color: #d31027;
 }
-input[type='number']:focus {
-  color:#000;
+input[type="number"]:focus {
+  color: #000;
 }

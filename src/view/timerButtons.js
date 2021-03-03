@@ -3,21 +3,21 @@ import * as timerStates from "../component/timerStates.js";
 import { TimerButton, Center } from "../styles/timerStyleButtons.js";
 import PropTypes from "prop-types";
 
-const timerButtons = props => {
-  const playPauseButton = props => {
-    if (props.timerState === timerStates.DONE)
+const timerButtons = ({ timerState, startTimer, pauseTimer, resetTimer }) => {
+  const playPauseButton = () => {
+    if (timerState == timerStates.DONE)
       return (
-        <TimerButton onClick={props.startTimer} disabled>
+        <TimerButton onClick={startTimer} disabled>
           Start
         </TimerButton>
       );
 
-    if (props.timerState !== timerStates.RUNNING)
-      return <TimerButton onClick={props.startTimer}>Start</TimerButton>;
+    if (timerState != timerStates.RUNNING)
+      return <TimerButton onClick={startTimer}>Start</TimerButton>;
 
-    if (props.timerState === timerStates.RUNNING)
+    if (timerState == timerStates.RUNNING)
       return (
-        <TimerButton onClick={props.pauseTimer} pause>
+        <TimerButton onClick={pauseTimer} pause>
           Pause
         </TimerButton>
       );
@@ -25,8 +25,8 @@ const timerButtons = props => {
 
   return (
     <Center>
-      {playPauseButton(props)}
-      <TimerButton onClick={props.resetTimer}>Reset</TimerButton>
+      {playPauseButton()}
+      <TimerButton onClick={resetTimer}>Reset</TimerButton>
     </Center>
   );
 };

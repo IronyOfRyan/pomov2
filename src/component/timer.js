@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 import TimerDisplay from "../view/timerDisplay.js";
 import TimerButtons from "../view/timerButtons.js";
@@ -8,28 +8,26 @@ import AppOverlay from "./AppOverlay.js";
 import AppContent from "../styles/appcontent.js";
 import PropTypes from "prop-types";
 
-class Timer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      currentTime: moment.duration(25, "minutes"),
-      initTime: moment.duration(25, "minutes"),
-      timerState: timerStates.INIT,
-      interval: null
-    };
-  }
+const Timer = () => {
+  const [state, setstate] = useState({
+    currentTime: moment.duration(25, "minutes"),
+    initTime: moment.duration(25, "minutes"),
+    timerState: timerStates.INIT,
+    interval: null
+  });
 
-  setInitTime = newInitTime => {
-    this.setState({
+  const setInitTime = newInitTime => {
+    setstate(prevState => ({
+      ...prevState,
       initTime: newInitTime,
       currentTime: newInitTime
-    });
+    }));
   };
 
-  swapTimer = () => {
-    clearInterval(this.state.interval);
+  const swapTimer = () => {
+    clearInterval(state.interval);
 
-    this.setState({
+    setstate({
       timerState: timerStates.INIT,
       currentTime: moment.duration(5, "minutes"),
       initTime: moment.duration(5, "minutes"),
@@ -37,65 +35,69 @@ class Timer extends Component {
     });
   };
 
-  startTimer = () => {
-    if (this.state.interval) clearInterval(this.state.interval);
-    if (this.state.timerState === timerStates.DONE) return;
+  const startTimer = () => {
+    if (state.interval) clearInterval(state.interval);
+    if (state.timerState === timerStates.DONE) return;
 
-    this.setState({
+    setstate(prevState => ({
+      ...prevState,
       timerState: timerStates.RUNNING,
-      interval: setInterval(this.reduceTimer, 1000)
-    });
+      interval: setInterval(reduceTimer, 1000)
+    }));
     start.play();
   };
 
-  noZeroTimer = () => {
+  const noZeroTimer = () => {
     if (
-      this.state.currentTime.get("hours") === 0 &&
-      this.state.currentTime.get("minutes") === 0 &&
-      this.state.currentTime.get("seconds") === 0
+      state.currentTime.get("hours") === 0 &&
+      state.currentTime.get("minutes") === 0 &&
+      state.currentTime.get("seconds") === 0
     ) {
       end.play();
       return;
     }
   };
 
-  reduceTimer = () => {
+  const reduceTimer = () => {
     if (
-      this.state.currentTime.get("hours") === 0 &&
-      this.state.currentTime.get("minutes") === 0 &&
-      this.state.currentTime.get("seconds") === 0
+      state.currentTime.get("hours") === 0 &&
+      state.currentTime.get("minutes") === 0 &&
+      state.currentTime.get("seconds") === 0
     ) {
-      clearInterval(this.state.interval);
-      this.completeTimer();
+      clearInterval(state.interval);
+      completeTimer();
       return;
     }
 
-    const newTime = moment.duration(this.state.currentTime);
+    const newTime = moment.duration(state.currentTime);
     newTime.subtract(1, "second");
-    this.setState({
+    setstate(prevState => ({
+      ...prevState,
       currentTime: newTime
-    });
+    }));
   };
 
-  pauseTimer = () => {
-    if (this.state.interval) clearInterval(this.state.interval);
+  const pauseTimer = () => {
+    if (state.interval) clearInterval(state.interval);
     pause.play();
-    this.setState({
+    setstate(prevState => ({
+      ...prevState,
       timerState: timerStates.PAUSE
-    });
+    }));
   };
 
-  completeTimer = () => {
-    this.setState({
+  const completeTimer = () => {
+    setstate(prevState => ({
+      ...prevState,
       timerState: timerStates.DONE,
       interval: null
-    });
+    }));
   };
 
-  resetTimer = () => {
-    clearInterval(this.state.interval);
+  const resetTimer = () => {
+    clearInterval(state.interval);
     reset.play();
-    this.setState({
+    setstate({
       currentTime: moment.duration(25, "minutes"),
       initTime: moment.duration(25, "minutes"),
       timerState: timerStates.INIT,
@@ -103,27 +105,25 @@ class Timer extends Component {
     });
   };
 
-  render() {
-    return (
-      <div>
-        <TimerDisplay
-          currentTime={this.state.currentTime}
-          timerState={this.state.timerState}
-        />
-        <TimerButtons
-          startTimer={this.startTimer}
-          timerState={this.state.timerState}
-          pauseTimer={this.pauseTimer}
-          resetTimer={this.resetTimer}
-        />
-        <AppOverlay
-          initTime={this.state.initTime}
-          setInitTime={this.setInitTime}
-          timerState={this.state.timerState}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <TimerDisplay
+        currentTime={state.currentTime}
+        timerState={state.timerState}
+      />
+      <TimerButtons
+        startTimer={startTimer}
+        timerState={state.timerState}
+        pauseTimer={pauseTimer}
+        resetTimer={resetTimer}
+      />
+      <AppOverlay
+        initTime={state.initTime}
+        setInitTime={setInitTime}
+        timerState={state.timerState}
+      />
+    </div>
+  );
+};
 
 export default Timer;

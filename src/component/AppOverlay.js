@@ -1,40 +1,33 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import TimerInputs from "../view/timerInputs.js";
 import WorkTimeDisplay from "../view/timerWorkButton.js";
 import { Overlay, Wrapper, Span, ContentHolder } from "../styles/appoverlay.js";
 import PropTypes from "prop-types";
 
-class AppOverlay extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      style: {
-        width: 0
-      }
+const AppOverlay = ({ initTime, setInitTime }) => {
+  const [state, setstate] = useState({ style: { width: 0 } });
+
+  useEffect(() => {
+    document.addEventListener("click", closeNav);
+    document.addEventListener("click", openNav);
+    return () => {
+      document.removeEventListener("click", closeNav);
+      document.removeEventListener("click", openNav);
     };
-  }
+  }, [state]);
 
-  componentDidMount() {
-    document.addEventListener("DOMContentLoaded", this.openNav);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("DOMContentLoaded", this.openNav);
-  }
-
-  openNav = () => {
+  const openNav = () => {
     const style = { width: 100 + "%" };
-    this.setState({ style });
+    setstate({ style });
   };
 
-  closeNav = () => {
-    document.removeEventListener("click", this.closeNav);
+  const closeNav = () => {
     const style = { width: 0 };
-    this.setState({ style });
+    setstate({ style });
   };
 
-  handleChange = ev => {
-    const newInitTime = this.props.initTime;
+  const handleChange = ev => {
+    const newInitTime = initTime;
 
     if (ev.target.id === "hours" && ev.target.value <= 4)
       newInitTime
@@ -49,45 +42,39 @@ class AppOverlay extends React.Component {
         .subtract(newInitTime.get("seconds"), "seconds")
         .add(parseInt(ev.target.value, 10), "seconds");
 
-    this.props.setInitTime(newInitTime);
+    setInitTime(newInitTime);
   };
 
-  handleKeyPress = event => {
+  const handleKeyPress = event => {
     if (event.key == "Enter") {
       event.preventDefault();
-      this.closeNav();
+      closeNav();
     }
   };
 
-  render() {
-    return (
-      <Wrapper>
-        <Span onClick={this.openNav}>&#9776; Open Settings</Span>
-        <Overlay style={this.state.style}>
-          <ContentHolder style={this.state.style}>
-            <h2>Timer Settings</h2>
-            <p>How long do you want to work?</p>
+  return (
+    <Wrapper>
+      <Span onClick={openNav}>&#9776; Open Settings</Span>
+      <Overlay style={state.style}>
+        <ContentHolder style={state.style}>
+          <h2>Timer Settings</h2>
+          <p>How long do you want to work?</p>
 
-            <WorkTimeDisplay initTime={this.props.initTime} />
-            <TimerInputs
-              enterKey={this.handleKeyPress}
-              handleChange={this.handleChange}
-              initTime={this.props.initTime}
-            />
+          <WorkTimeDisplay initTime={initTime} />
+          <TimerInputs
+            enterKey={handleKeyPress}
+            handleChange={handleChange}
+            initTime={initTime}
+          />
 
-            <a
-              href="javascript:void(0)"
-              className="closebtn"
-              onClick={this.closeNav}
-            >
-              Close Settings
-            </a>
-          </ContentHolder>
-        </Overlay>
-      </Wrapper>
-    );
-  }
-}
+          <a href="" className="closebtn" onClick={closeNav}>
+            Close Settings
+          </a>
+        </ContentHolder>
+      </Overlay>
+    </Wrapper>
+  );
+};
 
 AppOverlay.propTypes = {
   initTime: PropTypes.object,

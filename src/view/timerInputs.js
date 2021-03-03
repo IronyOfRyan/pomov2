@@ -7,7 +7,7 @@ import {
   NumberInput
 } from "../styles/settingsNumberForm";
 
-const TimerInputs = props => {
+const TimerInputs = ({ enterKey, initTime, handleChange }) => {
   return (
     <NumberForms>
       <Form>
@@ -19,9 +19,9 @@ const TimerInputs = props => {
           min="0"
           tabIndex="0"
           step="1"
-          onKeyDown={props.enterKey}
-          defaultValue={props.initTime.get("hours")}
-          onChange={props.handleChange}
+          onKeyDown={enterKey}
+          defaultValue={initTime.get("hours")}
+          onChange={handleChange}
           onInput={e => {
             e.target.value = Math.max(0, parseInt(e.target.value))
               .toString()
@@ -38,9 +38,9 @@ const TimerInputs = props => {
           type="number"
           tabIndex="0"
           step="1"
-          onKeyDown={props.enterKey}
-          defaultValue={props.initTime.get("minutes")}
-          onChange={props.handleChange}
+          onKeyDown={enterKey}
+          defaultValue={initTime.get("minutes")}
+          onChange={handleChange}
           onInput={e => {
             e.target.value = Math.max(0, parseInt(e.target.value))
               .toString()
@@ -57,9 +57,9 @@ const TimerInputs = props => {
           min="0"
           tabIndex="0"
           step="1"
-          onKeyDown={props.enterKey}
-          defaultValue={props.initTime.get("seconds")}
-          onChange={props.handleChange}
+          onKeyDown={enterKey}
+          defaultValue={initTime.get("seconds")}
+          onChange={handleChange}
           onInput={e => {
             e.target.value = Math.max(0, parseInt(e.target.value))
               .toString()
