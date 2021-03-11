@@ -16,6 +16,15 @@ const Timer = () => {
     interval: null
   });
 
+  // useEffect(() => {
+  //   if (state.timerState == 1) {
+  //     setstate((prevState) => ({
+  //       ...prevState,
+  //       interval: setInterval(reduceTimer, 1000),
+  //     }));
+  //   }
+  // }, [state.currentTime]);
+
   const setInitTime = newInitTime => {
     setstate(prevState => ({
       ...prevState,
@@ -107,10 +116,7 @@ const Timer = () => {
 
   return (
     <div>
-      <TimerDisplay
-        currentTime={state.currentTime}
-        timerState={state.timerState}
-      />
+      <TimerDisplay currentTime={state.currentTime} />
       <TimerButtons
         startTimer={startTimer}
         timerState={state.timerState}

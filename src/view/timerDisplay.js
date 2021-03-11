@@ -9,11 +9,6 @@ const zeroPad = num => {
 };
 
 const timerDisplay = ({ currentTime }) => {
-  useEffect(() => {
-    return () => {
-      null;
-    };
-  }, [currentTime]);
   return (
     <TimerBox>
       {/* Hide the hour element if time is below 60 minutes. */}
